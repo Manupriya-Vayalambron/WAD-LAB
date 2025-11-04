@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OTP Checker App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      font-size: 18px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 2px solid #66a6ff;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #66a6ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5590e3;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>OTP Verification</h2>
+    <div>
+      <input type="text" id="n1" maxlength="1">
+      <input type="text" id="n2" maxlength="1">
+      <input type="text" id="n3" maxlength="1">
+      <input type="text" id="n4" maxlength="1">
+    </div>
+    <button onclick="checkOTP()">Verify OTP</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    // Stored OTP for checking
+    var otp = "1234";
+
+    function checkOTP() {
+      // Get entered values
+      var o1 = document.getElementById("n1").value;
+      var o2 = document.getElementById("n2").value;
+      var o3 = document.getElementById("n3").value;
+      var o4 = document.getElementById("n4").value;
+
+      var entered = o1 + o2 + o3 + o4;
+      var msg = document.getElementById("msg");
+
+      // Compare with stored OTP
+      if (entered === otp) {
+        msg.innerHTML = "✅ OTP Verified Successfully!";
+        msg.className = "success";
+      } else {
+        msg.innerHTML = "❌ Incorrect OTP. Try again.";
+        msg.className = "error";
+      }
+    }
+  </script>
+</body>
+</html>

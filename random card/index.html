@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Random Card Generator </title>
+<style>
+img{
+width: 120px;
+height: 120px;
+border-radius: 50%;
+border: 4px solid pink;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+}
+
+body{
+background: linear-gradient(136deg, pink, red);
+display: flex;
+align-items: center;
+justify-content:center;
+font-family: Trebuchet MS;
+height:100vh;
+}
+
+.card{
+background: rgba(255,255,255,0.8);
+padding: 30px;
+border-radius: 10px;
+box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+.card:hover{
+transform: scale(1.1);
+}
+
+h2{
+color: rgba(240,0,0,1);
+text-align: center;
+}
+
+h4{
+text-align:center;
+}
+
+p{
+text-align: center;
+}
+
+button{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+background: linear-gradient(136deg, pink, red);
+color: white;
+border-radius: 10px;
+border: 0;
+padding: 10px;
+}
+
+button:hover{
+background: white;
+color: red;
+cursor:pointer;
+}
+</style>
+<body>
+<div class="card"> 
+<img src="user1.png" id="pfp">
+<h2 id="name"> Manu </h2>
+<h4 id="role"> Computer Engineer </h4>
+<p id="desc"> A techie working at Alphatech Innovaties as a full time employee </p>
+<button onclick="newCard()">Generate Random Card</button>
+</div>
+<script>
+const users=[
+
+{
+name: "Manu",
+role: "Computer Engineer",
+desc: "A techie working at Alphatech Innovaties as a full time employee",
+profile: "user1.png"
+},
+
+{
+name: "Priya",
+role: "Civil Engg",
+desc: "Site supervisor working at tgt solutions for full time job",
+profile: "user2.png"
+},
+
+{
+name: "Druva",
+role: "Mech Engg",
+desc: "Steel industry enthusiast with 10 years of field experience",
+profile: "user3.png"
+},
+
+{
+name: "Ajith",
+role: "Electronics Engg",
+desc: "KSEB worker who has been in the field for 5+ years",
+profile: "user4.png"
+},
+
+{
+name: "Sahiba",
+role: "Life Skills Trainer",
+desc: "Works as a freelancer providing teaching and training services",
+profile: "user5.png"
+}
+];
+
+function newCard(){
+const index=Math.floor(Math.random()*users.length);
+const user=users[index];
+
+document.getElementById("name").textContent=user.name;
+document.getElementById("role").textContent=user.role;
+document.getElementById("desc").textContent=user.desc;
+document.getElementById("pfp").src=user.profile;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Word</title>
+<style>
+body{
+font-family: Comic Sans MS;
+background: linear-gradient(136deg,yellow,pink);
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+height: 100vh;
+}
+
+h1{
+margin-bottom:20px;
+color: red;
+}
+
+p{
+margin:20px;
+letter-spacing: 10px;
+}
+
+#keyboard{
+display: grid;
+grid-template-columns: repeat(13, 40px);
+gap: 5px;
+}
+
+#keyboard button{
+color: white;
+background: red;
+width: 40px;
+height: 40px;
+border: 0;
+border-radius: 10px;
+}
+
+#keyboard button:hover{
+transform: scale(1.1);
+}
+
+.message{
+font-size: 2em;
+margin:10px;
+}
+
+.success{
+color: green;
+}
+
+.error{
+color: red;
+}
+
+#display
+{
+font-size:2em;
+}
+</style>
+</head>
+<body>
+<h1> GUESS THE WORD </h1>
+<p id="display">_ _ _ _ _ _</p>
+<div id="keyboard"></div>
+<div class="message" id="message"></div>
+<script>
+const word="FLOWER"
+const guessed=["_","_","_","_","_","_"];
+const message=document.getElementById("message");
+
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+letters.split('').forEach(letter => {
+const btn=document.createElement("button");
+btn.textContent=letter;
+btn.addEventListener("click",() => guessWord(letter,btn));
+document.getElementById("keyboard").appendChild(btn); 
+});
+
+function update(){
+document.getElementById("display").textContent=guessed.join(" ");
+}
+
+function guessWord(letter, button){
+button.disabled=true;
+let found=false;
+
+for(i=0;i<word.length;i++)
+{
+	if(word[i]===letter)
+{
+guessed[i]=letter;
+found=true;
+}
+}
+
+update();
+
+if(!found)
+{
+	message.textContent="Wrong guess";
+	message.className="message error";
+}
+else
+{
+	message.textContent="";
+}
+
+if(guessed.join('')===word){
+	message.textContent="Congratulations, you guess it right";
+	message.className="message success";
+}
+
+update();
+};
+</script>
+</body>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movie Ticket Booking</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 30px;
+    background-color: #f2f2f2;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  .movie-info {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .seat-container {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .seat {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .seat.selected {
+    background-color: #4CAF50; /* Green for selected */
+  }
+
+  .screen {
+    background-color: #999;
+    height: 20px;
+    width: 350px;
+    margin: 20px auto;
+    border-radius: 5px;
+  }
+
+  .label {
+    margin-top: 10px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+  <h2>Movie Ticket Booking</h2>
+  <div class="movie-info">
+    <strong>Movie Name:</strong> Avengers: Endgame <br>
+    <strong>Booked Seats:</strong> <span id="bookedSeats">None</span>
+  </div>
+
+  <div class="screen">SCREEN</div>
+
+  <div class="seat-container" id="seatContainer"></div>
+
+  <div class="label">Click on seats to select or deselect.</div>
+<script>
+  const seatContainer = document.getElementById('seatContainer');
+  const bookedSeatsDisplay = document.getElementById('bookedSeats');
+  const rows = 5, cols = 8;
+
+  // Generate seats dynamically
+  for (let i = 1; i <= rows * cols; i++) {
+    const seat = document.createElement('div');
+    seat.classList.add('seat');
+    seat.dataset.seatNum = i;
+    seat.addEventListener('click', () => {
+      seat.classList.toggle('selected');
+      updateBookedSeats();
+    });
+    seatContainer.appendChild(seat);
+  }
+
+  function updateBookedSeats() {
+    const selectedSeats = document.querySelectorAll('.seat.selec ted');
+    const seatNumbers = Array.from(selectedSeats).map(seat => seat.dataset.seatNum);
+    bookedSeatsDisplay.textContent = seatNumbers.length > 0 ? seatNumbers.join(', ') : 'None';
+  }
+</script>
+
+</body>
+</html>

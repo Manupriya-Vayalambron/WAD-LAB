@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic JavaScript Functionality</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>JavaScript Functionality Experiment</h1>
+
+    <!-- Calculator Section -->
+    <section>
+        <h2>Multifunction Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <select id="operator">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="/">Division (/)</option>
+        </select>
+        <button onclick="calculate()">Calculate</button>
+        <p class="result" id="calcResult"></p>
+    </section>
+
+    <!-- Capitalize Section -->
+    <section>
+        <h2>Capitalize First Letter of Each Word</h2>
+        <input type="text" id="sentence" placeholder="Enter a sentence">
+        <button onclick="capitalizeWords()">Capitalize</button>
+        <p class="result" id="capitalized"></p>
+    </section>
+
+    <!-- Palindrome Section -->
+    <section>
+        <h2>Check Palindrome</h2>
+        <input type="text" id="palindromeInput" placeholder="Enter a string">
+        <button onclick="checkPalindrome()">Check</button>
+        <p class="result" id="palindromeResult"></p>
+    </section>
+
+    <!-- Frequency Section -->
+    <section>
+        <h2>Frequency of Array Elements</h2>
+        <input type="text" id="arrayInput" placeholder="Enter elements separated by commas">
+        <button onclick="arrayFrequency()">Find Frequency</button>
+        <p class="result" id="freqResult"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

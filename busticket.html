@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Ticket Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6d365, #fda085);
+      display: flex;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 500px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .bus-info {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .seat-layout {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .column {
+      display: grid;
+      grid-template-columns: repeat(2, 60px);
+      gap: 10px;
+    }
+
+    .seat {
+      width: 60px;
+      height: 60px;
+      background: #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      line-height: 60px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .seat.selected {
+      background: #28a745;
+      color: white;
+    }
+
+    .aisle {
+      width: 40px; /* space between left and right seats */
+    }
+
+    .booked-seats {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Bus Ticket Booking</h2>
+    <div class="bus-info">
+      Bus No: KA-01-1234 <br>
+      Route: City A → City B
+    </div>
+
+    <div class="seat-layout">
+      <div class="column" id="leftSeats"></div>
+      <div class="aisle"></div>
+      <div class="column" id="rightSeats"></div>
+    </div>
+
+    <div class="booked-seats" id="bookedSeats">
+      Booked Seats: None
+    </div>
+  </div>
+
+  <script>
+    const leftContainer = document.getElementById("leftSeats");
+    const rightContainer = document.getElementById("rightSeats");
+    const bookedDisplay = document.getElementById("bookedSeats");
+
+    let bookedSeats = [];
+
+    // Create 20 seats per side (2 columns × 10 rows)
+    for (let i = 1; i <= 20; i++) {
+      const seat = document.createElement("div");
+      seat.className = "seat";
+      seat.textContent = i;
+
+      seat.addEventListener("click", () => {
+        if (seat.classList.contains("selected")) {
+          seat.classList.remove("selected");
+          bookedSeats = bookedSeats.filter(s => s !== i);
+        } else {
+          seat.classList.add("selected");
+          bookedSeats.push(i);
+        }
+        updateBookedDisplay();
+      });
+
+      if (i <= 10) {
+        leftContainer.appendChild(seat);
+      } else {
+        rightContainer.appendChild(seat);
+      }
+    }
+
+    function updateBookedDisplay() {
+      if (bookedSeats.length === 0) {
+        bookedDisplay.textContent = "Booked Seats: None";
+      } else {
+        bookedDisplay.textContent = "Booked Seats: " + bookedSeats.join(", ");
+      }
+    }
+  </script>
+</body>
+</html>

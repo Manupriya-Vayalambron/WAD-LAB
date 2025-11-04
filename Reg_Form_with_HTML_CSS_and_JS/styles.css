@@ -1,0 +1,88 @@
+/* === Reset & Base Styles === */
+* {
+  box-sizing: border-box; /* Includes padding and border in element's total width/height */
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, sans-serif; /* Sets clean, readable font */
+  line-height: 1.6; /* Improves readability */
+  background: #f2f2f2; /* Light gray background */
+  padding: 1rem; /* Padding around the page */
+}
+
+/* === Form Container === */
+main {
+  max-width: 500px; /* Max width for form */
+  margin: 2rem auto; /* Center horizontally with margin on top/bottom */
+  background: #fff; /* White background for the form */
+  padding: 2rem; /* Inner padding */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+h1 {
+  text-align: center; /* Center align heading */
+  margin-bottom: 1.5rem; /* Space below heading */
+}
+
+/* === Form Group === */
+.form-group {
+  margin-bottom: 1.25rem; /* Space between fields */
+}
+label {
+  display: block; /* Forces label on its own line */
+  font-weight: bold; /* Bold text for clarity */
+  margin-bottom: 0.5rem; /* Spacing below label */
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%; /* Full width of container */
+  padding: 0.75rem; /* Internal padding */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem; /* Base font size */
+}
+small {
+  display: block; /* Places on a new line */
+  margin-top: 0.5rem; /* Space above */
+  color: #555; /* Dark gray text */
+  font-size: 0.85rem; /* Slightly smaller font */
+}
+
+/* === Error Messages === */
+.error {
+  color: #d8000c; /* Red error text */
+  font-size: 0.9rem; /* Smaller than normal text */
+  margin-top: 0.25rem; /* Spacing above the error */
+}
+
+/* === Submit Button === */
+button {
+  width: 100%; /* Full width button */
+  padding: 0.75rem; /* Internal padding */
+  background-color: #0077cc; /* Blue background */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1.1rem; /* Slightly larger text */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+button:hover {
+  background-color: #005fa3; /* Darker blue on hover */
+}
+
+/* === Responsive Design === */
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem; /* Less padding on small screens */
+  }
+
+  main {
+    padding: 1rem; /* Smaller form padding */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Adjust heading size */
+  }
+}

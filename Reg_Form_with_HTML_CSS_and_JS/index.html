@@ -1,0 +1,92 @@
+<!DOCTYPE html> <!-- Declares the document type and version of HTML -->
+<html lang="en"> <!-- Root HTML element with language set to English -->
+<head>
+  <meta charset="UTF-8" /> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <!-- Makes site responsive on mobile -->
+  <title>Event Registration</title> <!-- Sets the browser tab title -->
+  <link rel="stylesheet" href="styles.css"/> <!-- Links the external CSS file -->
+</head>
+<body>
+  <main> <!-- Semantic main content area -->
+    <form id="registrationForm" novalidate> <!-- Registration form, 'novalidate' disables native browser messages -->
+      <h1>Register for the Event</h1> <!-- Form heading -->
+
+      <div class="form-group"> <!-- Container for name input -->
+        <label for="name">Full Name</label> <!-- Label for name input, improves accessibility -->
+        <input type="text" id="name" name="name" required aria-required="true" /> <!-- Text input, required field -->
+        <span class="error" id="nameError" aria-live="polite"></span> <!-- Placeholder for name error message, read by screen readers -->
+      </div>
+
+      <div class="form-group"> <!-- Container for email input -->
+        <label for="email">Email Address</label> <!-- Label for email input -->
+        <input type="email" id="email" name="email" required aria-required="true" /> <!-- Email input, required -->
+        <span class="error" id="emailError" aria-live="polite"></span> <!-- Placeholder for email error message -->
+      </div>
+
+      <div class="form-group"> <!-- Container for password input -->
+        <label for="password">Create Password</label> <!-- Label for password input -->
+        <input
+          type="password" 
+          id="password"
+          name="password"
+          required 
+          minlength="8" 
+          pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+" 
+          aria-required="true"
+        />
+        <small id="passwordHelp">
+          Must be at least 8 characters, including an uppercase letter, lowercase letter, and a number.
+        </small> <!-- Password guidance text -->
+        <span class="error" id="passwordError" aria-live="polite"></span> <!-- Placeholder for password error message -->
+      </div>
+
+      <button type="submit">Register</button> <!-- Submit button -->
+    </form>
+  </main>
+
+  <!-- JavaScript for validation -->
+  <script>
+    const form = document.getElementById("registrationForm"); // Get the form element
+
+    form.addEventListener("submit", function (e) { // Add submit event listener
+      let valid = true; // Flag to track if all fields are valid
+
+      // === Name Validation ===
+      const nameInput = document.getElementById("name"); // Get name input field
+      const nameError = document.getElementById("nameError"); // Get error span for name
+      if (!nameInput.value.trim()) { // Check if name is empty or whitespace
+        nameError.textContent = "Please enter your full name."; // Show error message
+        valid = false; // Mark form as invalid
+      } else {
+        nameError.textContent = ""; // Clear error if input is valid
+      }
+
+      // === Email Validation ===
+      const emailInput = document.getElementById("email"); // Get email input
+      const emailError = document.getElementById("emailError"); // Get email error span
+      const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/; // Regex pattern for basic email validation
+      if (!emailPattern.test(emailInput.value)) { // Test input against pattern
+        emailError.textContent = "Please enter a valid email address."; // Show error
+        valid = false; // Mark form as invalid
+      } else {
+        emailError.textContent = ""; // Clear error
+      }
+
+      // === Password Validation ===
+      const passwordInput = document.getElementById("password"); // Get password input
+      const passwordError = document.getElementById("passwordError"); // Get password error span
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Regex for password rules
+      if (!passwordPattern.test(passwordInput.value)) { // Check if password meets pattern
+        passwordError.textContent = "Password must meet the specified requirements."; // Show error
+        valid = false; // Mark form as invalid
+      } else {
+        passwordError.textContent = ""; // Clear error
+      }
+
+      if (!valid) {
+        e.preventDefault(); // Prevent form submission if validation fails
+      }
+    });
+  </script>
+</body>
+</html>

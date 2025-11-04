@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Toss Guessing Game</title>
+  <style>
+    body {
+      font-family: "Trebuchet MS", sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+
+    .game-box {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+      width: 320px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #0077b6;
+      margin-bottom: 15px;
+    }
+
+    .coin {
+      width: 120px;
+      height: 120px;
+      margin: 15px auto;
+      border-radius: 50%;
+      background: gold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    input {
+      padding: 8px;
+      width: 150px;
+      border: 2px solid #0077b6;
+      border-radius: 6px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #48cae4, #0096c7);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0077b6;
+    }
+
+    .stats {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .result {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .fail {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-box">
+    <h1>Coin Toss Game 🪙</h1>
+    <div class="coin" id="coinDisplay">?</div>
+    <input type="text" id="userGuess" placeholder="Enter Head or Tail">
+    <br>
+    <button onclick="tossCoin()">Toss Coin</button>
+    <div class="result" id="result"></div>
+    <div class="stats" id="stats">Rounds: 0 | Correct: 0</div>
+  </div>
+
+  <script>
+    let rounds = 0;
+    let correct = 0;
+
+    function tossCoin() {
+      const guess = document.getElementById("userGuess").value.trim().toLowerCase();
+      if (guess !== "head" && guess !== "tail") {
+        document.getElementById("result").textContent = "Please enter 'Head' or 'Tail'";
+        document.getElementById("result").className = "result fail";
+        return ;
+      }
+
+      const outcomes = ["head", "tail"];
+      const toss = outcomes[Math.floor(Math.random() * 2)];
+      document.getElementById("coinDisplay").textContent = toss.toUpperCase();
+
+      rounds++;
+
+      if (toss === guess) {
+        correct++;
+        document.getElementById("result").textContent = "🎉 You guessed it right!";
+        document.getElementById("result").className = "result success";
+      } else {
+        document.getElementById("result").textContent = "❌ Wrong guess, try again!";
+        document.getElementById("result").className = "result fail";
+      }
+
+      document.getElementById("stats").textContent = `Rounds: ${rounds} | Correct: ${correct}`;
+      document.getElementById("userGuess").value = "";
+    }
+  </script>
+</body>
+</html>

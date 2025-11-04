@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monument Showcase of India</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Monument Showcase of India</h1>
+    <nav>
+      <ul>
+        <li><a href="tajmahal.html">Taj Mahal</a></li>
+        <li><a href="qutubminar.html">Qutub Minar</a></li>
+        <li><a href="redfort.html">Red Fort</a></li>
+        <li><a href="india_gate.html">India Gate</a></li>
+        <li><a href="gateway_of_india.html">Gateway of India</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p>Welcome to the Monument Showcase of India! Explore the rich heritage and architectural brilliance of some of the most iconic monuments in India. Please register to access detailed information about each monument.</p>
+    </section>
+
+    <section class="registration">
+      <h2>User Registration</h2>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <p id="message"></p>
+    </section>
+  </main>
+
+  <script>
+    // Simple offline registration system using localStorage
+    const form = document.getElementById('registrationForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Store user data locally
+      localStorage.setItem('username', username);
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+
+      message.textContent = "Registration successful! You can now navigate to monument pages.";
+      message.style.color = "green";
+
+      form.reset();
+    });
+
+    // Optional: block access to monument pages if user not registered
+    const pages = ["tajmahal.html","qutubminar.html","redfort.html","india_gate.html","gateway_of_india.html"];
+    if(pages.includes(location.pathname.split("/").pop())){
+      if(!localStorage.getItem('username')){
+        alert("Please register on the homepage to access this page!");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input, textarea, select, button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.book {
+  flex: 1 1 45%;
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.add-to-cart {
+  margin-top: 5px;
+  width: auto;
+  padding: 5px 10px;
+}
+
+#cart {
+  list-style: none;
+  padding: 0;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 50px;
+}
+
+#cart li {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#cart li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .book-list {
+    flex-direction: column;
+  }
+}
